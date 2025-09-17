@@ -1,37 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Power of the Word – Support</title>
-    <meta name="description" content="Get support for Power of the Word app. Contact us, report issues, and find answers to common questions about our Bahá'í quotes application with widgets and 5-minute rotation.">
-    
+    <meta name="description"
+        content="Get support for Power of the Word app. Contact us, report issues, and find answers to common questions about our Bahá'í quotes application with widgets and 5-minute rotation.">
+
     <!-- Open Graph tags -->
     <meta property="og:title" content="Power of the Word – Support">
-    <meta property="og:description" content="Get support for Power of the Word app. Contact us, report issues, and find answers to common questions about our Bahá'í quotes application with widgets and 5-minute rotation.">
+    <meta property="og:description"
+        content="Get support for Power of the Word app. Contact us, report issues, and find answers to common questions about our Bahá'í quotes application with widgets and 5-minute rotation.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thejaberi.github.io/">
-    
+
     <link rel="stylesheet" href="./css/styles.css">
 </head>
+
 <body>
+    <script>
+        // Device detection and download button management
+        (function () {
+            function isMobileDevice() {
+                // Check for mobile user agents
+                const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+                const isMobileUA = mobileRegex.test(navigator.userAgent);
+
+                // Check for touch capability and screen size
+                const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+                const isSmallScreen = window.innerWidth <= 768;
+
+                // Consider it mobile if it matches mobile UA OR (has touch AND small screen)
+                return isMobileUA || (isTouchDevice && isSmallScreen);
+            }
+
+            function setupDownloadButtons() {
+                const mobileDownload = document.querySelector('.mobile-download');
+                const desktopDownload = document.querySelector('.desktop-download');
+                const platformNote = document.querySelector('.platform-note');
+
+                if (!mobileDownload || !desktopDownload || !platformNote) return;
+
+                if (isMobileDevice()) {
+                    // Mobile: Show universal download button
+                    mobileDownload.style.display = 'block';
+                    desktopDownload.style.display = 'none';
+                    platformNote.textContent = 'Tap to download from your device\'s app store';
+                } else {
+                    // Desktop: Show platform-specific buttons
+                    mobileDownload.style.display = 'none';
+                    desktopDownload.style.display = 'flex';
+                    desktopDownload.classList.add('active');
+                    platformNote.textContent = 'Choose your platform to download the app';
+                }
+            }
+
+            // Run on page load
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupDownloadButtons);
+            } else {
+                setupDownloadButtons();
+            }
+
+            // Re-run on window resize (in case device orientation changes)
+            let resizeTimeout;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(setupDownloadButtons, 250);
+            });
+        })();
+    </script>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    
-    <header class="header">
+
+    <!-- Unified Hero Section -->
+    <section class="unified-hero">
         <div class="container">
-            <h1 class="header__title">Power of the Word</h1>
-            <p class="header__tagline">Bahá'í quotes with home screen widgets</p>
+            <div class="hero-content">
+                <!-- Header Content -->
+                <div class="hero-header">
+                    <h1 class="hero-title">Power of the Word</h1>
+                    <p class="hero-tagline">Beautiful Bahá'í quotes with home screen widgets</p>
+                </div>
+
+                <!-- App Description -->
+                <div class="hero-description">
+                    <p class="hero-subtitle">
+                        Experience inspiring Bahá'í quotes that automatically refresh every 5 minutes,
+                        synchronized across your app and home screen widgets.
+                    </p>
+                </div>
+
+                <!-- Feature Highlights -->
+                <div class="hero-features">
+                    <div class="feature-badge">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                        </svg>
+                        Home Screen Widgets
+                    </div>
+                    <div class="feature-badge">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        Favorites & Search
+                    </div>
+                    <div class="feature-badge">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+                        </svg>
+                        5-Min Auto Updates
+                    </div>
+                    <div class="feature-badge">
+                        <svg class="feature-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.50-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+                        </svg>
+                        Easy Sharing
+                    </div>
+                </div>
+
+                <!-- Download Section -->
+                <div class="hero-download">
+                    <div class="download-heading">
+                        <h2 class="download-title">Download Now</h2>
+                        <p class="download-description">Get the app and start your spiritual journey</p>
+                    </div>
+
+                    <!-- Mobile Download Button -->
+                    <div class="mobile-download">
+                        <a href="https://link-to.app/BM589B" class="download-button download-button--universal"
+                            aria-label="Download Power of the Word app">
+                            <svg class="download-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+                            </svg>
+                            Download App
+                        </a>
+                    </div>
+
+                    <!-- Desktop Download Buttons -->
+                    <div class="desktop-download">
+                        <a href="https://apps.apple.com/bh/app/power-of-the-word/id6750488658"
+                            class="download-button download-button--ios" aria-label="Download on the App Store">
+                            <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                            </svg>
+                            Download for iPhone
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.jaberi.powerword&pcampaignid=web_share"
+                            class="download-button download-button--android" aria-label="Get it on Google Play">
+                            <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                            </svg>
+                            Download for Android
+                        </a>
+                    </div>
+
+                    <p class="platform-note">Choose your platform above or use our universal link on mobile</p>
+                </div>
+            </div>
         </div>
-    </header>
+    </section>
 
     <main id="main-content" class="main">
         <div class="container">
             <section class="card" aria-labelledby="contact-heading">
                 <h2 id="contact-heading" class="card__title">Contact Us</h2>
                 <p class="card__text">Need help or have questions? We're here to assist you.</p>
-                <a href="mailto:adnan@jaberi.org?subject=Power%20of%20the%20Word%20–%20Support" 
-                   class="button button--primary" 
-                   aria-label="Send support email to adnan@jaberi.org">
+                <a href="mailto:adnan@jaberi.org?subject=Power%20of%20the%20Word%20–%20Support"
+                    class="button button--primary" aria-label="Send support email to adnan@jaberi.org">
                     Email Support
                 </a>
                 <p class="card__note">We typically respond within 24 hours during business days.</p>
@@ -49,53 +191,69 @@
                     <li class="checklist__item">What you expected to happen vs. what actually happened</li>
                 </ul>
                 <p class="card__text">
-                    <a href="mailto:adnan@jaberi.org?subject=Power%20of%20the%20Word%20–%20Bug%20Report" 
-                       class="link">Send us this information</a> and we'll investigate promptly.
+                    <a href="mailto:adnan@jaberi.org?subject=Power%20of%20the%20Word%20–%20Bug%20Report"
+                        class="link">Send us this information</a> and we'll investigate promptly.
                 </p>
             </section>
 
             <section class="card" aria-labelledby="help-heading">
                 <h2 id="help-heading" class="card__title">Common Questions</h2>
-                
+
                 <div class="help-grid">
                     <div class="help-item">
                         <h3 class="help-item__title">5-Minute Quote Rotation</h3>
-                        <p class="help-item__text">The app automatically shows a new Bahá'í quote every 5 minutes. This rotation is synchronized between the app and home screen widgets, so you'll see the same quote everywhere.</p>
+                        <p class="help-item__text">The app automatically shows a new Bahá'í quote every 5 minutes. This
+                            rotation is synchronized between the app and home screen widgets, so you'll see the same
+                            quote everywhere.</p>
                     </div>
-                    
+
                     <div class="help-item">
                         <h3 class="help-item__title">Next & Back Buttons</h3>
-                        <p class="help-item__text">Use Next/Back to browse quotes manually. When you do this, the app overrides the automatic rotation for 5 minutes, keeping your selected quote visible in both the app and widgets.</p>
+                        <p class="help-item__text">Use Next/Back to browse quotes manually. When you do this, the app
+                            overrides the automatic rotation for 5 minutes, keeping your selected quote visible in both
+                            the app and widgets.</p>
                     </div>
-                    
+
                     <div class="help-item">
                         <h3 class="help-item__title">Home Screen Widgets</h3>
-                        <p class="help-item__text">Add the Power of the Word widget to your home screen (iOS and Android). Widgets stay in sync with the app and support deep linking - tap a widget to open the app to that exact quote.</p>
+                        <p class="help-item__text">Add the Power of the Word widget to your home screen (iOS and
+                            Android). Widgets stay in sync with the app and support deep linking - tap a widget to open
+                            the app to that exact quote.</p>
                     </div>
-                    
+
                     <div class="help-item">
                         <h3 class="help-item__title">Favorites & Search</h3>
-                        <p class="help-item__text">Heart quotes to save them as favorites, then view them in the Favorites tab. Use the Search tab to find specific quotes with fuzzy search across all Bahá'í writings.</p>
+                        <p class="help-item__text">Heart quotes to save them as favorites, then view them in the
+                            Favorites tab. Use the Search tab to find specific quotes with fuzzy search across all
+                            Bahá'í writings.</p>
                     </div>
-                    
+
                     <div class="help-item">
                         <h3 class="help-item__title">Themes & Settings</h3>
-                        <p class="help-item__text">The app follows your device's dark/light mode by default. You can override this in Settings to always use your preferred theme. Font size respects your device's accessibility settings.</p>
+                        <p class="help-item__text">The app follows your device's dark/light mode by default. You can
+                            override this in Settings to always use your preferred theme. Font size respects your
+                            device's accessibility settings.</p>
                     </div>
-                    
+
                     <div class="help-item">
                         <h3 class="help-item__title">Sharing Quotes</h3>
-                        <p class="help-item__text">Share inspiring quotes using your device's share sheet. Available from both the Home screen and quote detail views to spread wisdom with friends and family.</p>
+                        <p class="help-item__text">Share inspiring quotes using your device's share sheet. Available
+                            from both the Home screen and quote detail views to spread wisdom with friends and family.
+                        </p>
                     </div>
-                    
+
                     <div class="help-item">
                         <h3 class="help-item__title">Widget Troubleshooting</h3>
-                        <p class="help-item__text">If widgets aren't updating or showing different quotes than the app, try removing and re-adding the widget, or force-close and reopen the app to refresh the sync.</p>
+                        <p class="help-item__text">If widgets aren't updating or showing different quotes than the app,
+                            try removing and re-adding the widget, or force-close and reopen the app to refresh the
+                            sync.</p>
                     </div>
-                    
+
                     <div class="help-item">
                         <h3 class="help-item__title">Deep Link Issues</h3>
-                        <p class="help-item__text">If tapping a widget doesn't open the correct quote in the app, ensure the app is updated to the latest version and try restarting your device to refresh the deep link handlers.</p>
+                        <p class="help-item__text">If tapping a widget doesn't open the correct quote in the app, ensure
+                            the app is updated to the latest version and try restarting your device to refresh the deep
+                            link handlers.</p>
                     </div>
                 </div>
             </section>
@@ -103,7 +261,8 @@
             <section class="card" aria-labelledby="legal-heading">
                 <h2 id="legal-heading" class="card__title">Legal Information</h2>
                 <p class="card__text">
-                    Review our <a href="./privacy.html" class="link">Privacy Policy</a> to understand how we protect your privacy and handle your data.
+                    Review our <a href="./privacy.html" class="link">Privacy Policy</a> to understand how we protect
+                    your privacy and handle your data.
                 </p>
             </section>
         </div>
@@ -115,4 +274,5 @@
         </div>
     </footer>
 </body>
+
 </html>
