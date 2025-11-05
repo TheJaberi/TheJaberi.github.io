@@ -4,275 +4,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power of the Word – Support</title>
-    <meta name="description"
-        content="Get support for Power of the Word app. Contact us, report issues, and find answers to common questions about our Bahá'í quotes application with widgets and 5-minute rotation.">
+    <title>GPCO Team Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Open Graph tags -->
-    <meta property="og:title" content="Power of the Word – Support">
-    <meta property="og:description"
-        content="Get support for Power of the Word app. Contact us, report issues, and find answers to common questions about our Bahá'í quotes application with widgets and 5-minute rotation.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://thejaberi.github.io/">
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #e2e8f0;
+        }
 
-    <link rel="stylesheet" href="./css/styles.css">
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #cbd5e1;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 2px solid rgba(71, 85, 105, 0.5);
+            border-radius: 10px;
+            color: #e2e8f0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: #60a5fa;
+            background: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px 24px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .result {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result.success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .result.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .result-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .result.success .result-icon {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .result.error .result-icon {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .result-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .password-display {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            padding: 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 8px;
+            border: 1px solid rgba(71, 85, 105, 0.3);
+        }
+
+        .password-text {
+            flex: 1;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 1.1rem;
+            color: #60a5fa;
+            letter-spacing: 0.5px;
+        }
+
+        .copy-btn {
+            padding: 8px 16px;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 6px;
+            color: #10b981;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: rgba(16, 185, 129, 0.3);
+            transform: scale(1.05);
+        }
+
+        .copy-btn.copied {
+            background: rgba(16, 185, 129, 0.4);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+
+        .portal-btn {
+            margin-top: 12px;
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: #60a5fa;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .portal-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .portal-btn::after {
+            content: '→';
+            font-size: 1.2rem;
+        }
+
+        .error-message {
+            color: #fca5a5;
+            font-size: 0.95rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .loading {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @media (max-width: 640px) {
+            .card {
+                padding: 28px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .password-display {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .copy-btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>GPCO Challenge Portal</h1>
+            <p>Retrieve your team's emergency access credentials</p>
+        </div>
+
+        <div class="card">
+            <form id="teamForm">
+                <div class="input-group">
+                    <label for="teamName">Team Name</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="teamName" placeholder="e.g., team-your-name" autocomplete="off"
+                            spellcheck="false">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">
+                    Retrieve Emergency Credentials
+                </button>
+            </form>
+
+            <div id="result" class="result"></div>
+        </div>
+    </div>
+
     <script>
-        // Device detection and download button management
-        (function () {
-            function isMobileDevice() {
-                // Check for mobile user agents
-                const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-                const isMobileUA = mobileRegex.test(navigator.userAgent);
+        const _0x4a8c = (function () {
+            const _0x2d4f = {
+                '_k1': 'QzJGdGFHVmxjZz09',
+                '_k2': 'VGhpc0lzQVNlY3JldEtleUZvckVuY3J5cHRpb24=',
+                '_k3': 'R1BDT1BvcnRhbDIwMjU='
+            };
 
-                // Check for touch capability and screen size
-                const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-                const isSmallScreen = window.innerWidth <= 768;
-
-                // Consider it mobile if it matches mobile UA OR (has touch AND small screen)
-                return isMobileUA || (isTouchDevice && isSmallScreen);
-            }
-
-            function setupDownloadButtons() {
-                const mobileDownload = document.querySelector('.mobile-download');
-                const desktopDownload = document.querySelector('.desktop-download');
-                const platformNote = document.querySelector('.platform-note');
-
-                if (!mobileDownload || !desktopDownload || !platformNote) return;
-
-                if (isMobileDevice()) {
-                    // Mobile: Show universal download button
-                    mobileDownload.style.display = 'block';
-                    desktopDownload.style.display = 'none';
-                    platformNote.textContent = 'Tap to download from your device\'s app store';
-                } else {
-                    // Desktop: Show platform-specific buttons
-                    mobileDownload.style.display = 'none';
-                    desktopDownload.style.display = 'flex';
-                    desktopDownload.classList.add('active');
-                    platformNote.textContent = 'Choose your platform to download the app';
+            const _0x5e9a = function (s, k) {
+                let r = '';
+                for (let i = 0; i < s.length; i++) {
+                    r += String.fromCharCode(s.charCodeAt(i) ^ k.charCodeAt(i % k.length));
                 }
+                return r;
+            };
+
+            const _0x7b2c = function (s) {
+                return decodeURIComponent(escape(atob(s)));
+            };
+
+            const _0x9d3e = function (s, k) {
+                return _0x5e9a(_0x7b2c(s), k);
+            };
+
+            const _0xdata = {
+                'Z11LUTRxUlNhIis0NB9J': 'fQtFUjRQAn1FXQR4LhtQTA==',
+                'Z11LUTR0RkppejN4LhtQRmBT': 'dFlGXWFlHnc0XwMaFDAPWWpQ',
+                'Z11LUTRxUkllYiF4Kx9UTHdJQUFv': 'YEgeX3wxY25WThQQaxxNRnFZ',
+                'Z11LUTR+RlRlZjQwIxAPS2RORkNoZA==': 'Z1dMSTRSemlOTm1iKRdMQg==',
+                'Z11LUTR6UktlaSU5axhNW2ZF': 'Yk1LUm1pXgpPPhQBAzAPRGBPVQ==',
+                'Z11LUTRsUktpIjQnIxsPWXdPVkV/eH8=': 'd1FZX3YxcRdRQQMQFFNSSHdUWw==',
+                'Z11LUTRuVkJiIjI8IhtQWg==': 'dU1QRkAxfhdKRAUMaxxLUw==',
+                'Z11LUTR7Uk9zbm0yMwxXWg==': 'Z01YXnYxdG5WTgYTa0dMTGZL',
+                'Z11LUTRvXFJvIjMgNBhHW3Y=': 'Y1FSWXUxYWhHRAUBa01YRmpN',
+                'Z11LUTRsVkZ2YyQ8MBtQWg==': 'Z1lJUzRPcmpRXQEca0tRSGlTQw==',
+                'Z11LUTR4Uktobih4IhtETGtER1hv': 'f01EXTRYYWZDQA54cgxNSHc=',
+                'Z11LUTRvUklgfDQ6NBMPWnRVQ04=': 'aVFNW2AxcWJBWwwQa0xAXH9a',
+                'Z11LUTR/XFVqZiM9I1NBRmFFUFk=': 'cVRPUn15QQpUQxUBCVMaWnVJTA==',
+                'Z11LUTRxRk9lfTI0N1NPSGBTVlhzZA==': 'fllaUHwxYWhGQBR4cB1OSGtL',
+                'Z11LUTR+Uk92bi48axxbXWBT': 'YFZFTnJ5XwpXXhUcFCxnZSgRTF9oZA==',
+                'Z11LUTRoQUZiaSk2awxNXGtEQ0hzYmc=': 'fV1FUjRMe2hBQQkNa01QQHZF',
+                'Z11LUTRoUkppdm0hLwpDR3Y=': 'cUFeWTROcm5KTQ8Ca0lFRWpX',
+                'Z11LUTR4UlNhIjA8MlNGUGtBT0Vv': 'fk1MWnByHmxLSwkUDVMbSndVT0g=',
+                'Z11LUTR4VlRhfTR4IhtAXGJHR1hv': 'YFlGT3gxZWZJXwkHA1MQS2xURw==',
+                'Z11LUTRxUktoIi00NBdMTHY=': 'Y11IXnV5HnNMWg4RAywPHGZSQ0l3',
+                'Z11LUTR9QUZmZiN4Jxc=': 'cFdHWW0xYGRFXQEXa0pBW2RXTg==',
+                'Z11LUTRwRktxIiwwIRtMTXY=': 'cFdIXnV5HndBQQcADzAPEXJBRk5wcg==',
+                'Z11LUTR7RktifDQnIx9PBGJBTE0=': 'Y0pDT3QxcWZKXAgQA1MUWmZSR0tx',
+                'Z11LUTR+UkUpbix4JB9KW2RJTAd+ZXxm': 'ZFlMWnV5HmRdTAwaFlMRS2lJTEE=',
+                'Z11LUTR2UlVtfW0/MxNSTHdT': 'YVlOXWsxe2JASAUdCTkPGHZQS0Q=',
+                'Z11LUTR1QEtlYSR4LxBMRnNBVkVuZA==': 'fldJVHAxZ25QTg54dA1WRmhQ',
+                'Z11LUTQvX0YpZCU8IB9J': 'dlVIWWsxcXJWXQkBCVMbXndBUg==',
+                'Z11LUTRxUklgZm04Jw1WTHdT': 'cFlJSGxvHmhWTgMZA1MVXm1JWA==',
+                'Z11LUTRxUlRsbS86NVNPSG5FUFk=': 'd1FEUzRKfH5FSAUHa0tQRmRN',
+                'Z11LUTR4W0hzIiQnIx9PTHdT': 'cFBDUHV1HmpFXRMdBzIPHXVFUg==',
+                'Z11LUTR0UlVmYDJ4Lh9BQmBSUQ==': 'YElfVX0xfmJDThplCDsPWnRVS04=',
+                'Z11LUTR3UlVlZG02KgtRXWBSUQ==': 'fEpIVW0xcGtLWA54fhZNR04=',
+                'Z11LUTRvRkxrYC54NQ9XSGE=': 'Y11IXnV5HmZITAgQC1MRS3dFVQ==',
+                'Z11LUTR4UlNhfG00KBoPTWRUQw==': 'cU1IXnV5HmBLTQwcCFMUWm1SV00=',
+                'Z11LUTRuWkFibm0nJxBFTHdT': 'fk1ZSHhuVwpURhgUFFMQWm5FVkl0',
+                'Z11LUTR0WkNgIiggNQpOTHdT': 'YVFaTHV5HmRFXxQUDzAPEGRITVM=',
+                'Z11LUTRvWlN2bm0mNh9QQnY=': 'Y1FJV3V5HnRMShIFB1MWQWxLRw==',
+                'Z11LUTR2UkllbSksJ1NITHFT': 'dlVIWWsxeXJJTQ94dxxNRmg=',
+                'Z11LUTRxUkljfS8jI1NPQGtEUQ==': 'dFRDSHp0HmVFQwwaCTAPHmNMTUto',
+                'Z11LUTRxXFNlbSI0N1NPRmc=': 'Z01SWX1zHnVBTgMBCSwPHHVVTll5'
+            };
+
+            return {
+                'get': function (t) {
+                    const k1 = _0x7b2c(_0x2d4f._k2);
+                    const k2 = _0x7b2c(_0x2d4f._k3);
+                    const te = btoa(_0x5e9a(_0x5e9a(t, k1), k2));
+                    if (_0xdata[te]) {
+                        return _0x5e9a(_0x9d3e(_0xdata[te], k2), k1);
+                    }
+                    return null;
+                }
+            };
+        })();
+
+        const form = document.getElementById('teamForm');
+        const teamInput = document.getElementById('teamName');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const teamName = teamInput.value.trim().toLowerCase();
+
+            if (!teamName) {
+                showError('Please enter a team name');
+                return;
             }
 
-            // Run on page load
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', setupDownloadButtons);
-            } else {
-                setupDownloadButtons();
-            }
+            // Add loading state
+            const btn = form.querySelector('.btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Retrieving...';
+            btn.classList.add('loading');
+            btn.disabled = true;
 
-            // Re-run on window resize (in case device orientation changes)
-            let resizeTimeout;
-            window.addEventListener('resize', function () {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(setupDownloadButtons, 250);
+            // Simulate slight delay for better UX
+            setTimeout(() => {
+                const password = _0x4a8c.get(teamName);
+
+                btn.textContent = originalText;
+                btn.classList.remove('loading');
+                btn.disabled = false;
+
+                if (password) {
+                    showSuccess(password, teamName);
+                } else {
+                    showError('Team not found. Please check your team name and try again.');
+                }
+            }, 400);
+        });
+
+        function showSuccess(password, teamName) {
+            resultDiv.className = 'result success';
+            const portalUrl = `https://${teamName}.workshop.gpco-cloud.com/`;
+            resultDiv.innerHTML = `
+                <div class="result-header">
+                    <div class="result-icon">✓</div>
+                    <div class="result-title">Emergency Credentials Retrieved</div>
+                </div>
+                <div class="password-display">
+                    <div class="password-text">${password}</div>
+                    <button class="copy-btn" onclick="copyPassword('${password}', this)">Copy</button>
+                </div>
+                <a href="${portalUrl}" target="_blank" class="portal-btn">Access Workshop Portal</a>
+            `;
+            resultDiv.classList.add('show');
+        }
+
+        function showError(message) {
+            resultDiv.className = 'result error';
+            resultDiv.innerHTML = `
+                <div class="result-header">
+                    <div class="result-icon">✕</div>
+                    <div class="result-title">Error</div>
+                </div>
+                <div class="error-message">${message}</div>
+            `;
+            resultDiv.classList.add('show');
+        }
+
+        function copyPassword(password, button) {
+            navigator.clipboard.writeText(password).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy password. Please copy manually.');
+            });
+        }
+
+        // Prevent easy inspection
+        (function () {
+            const preventKeys = function (e) {
+                if ((e.ctrlKey || e.metaKey) && (e.shiftKey && e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 85)) {
+                    e.preventDefault();
+                    return false;
+                }
+            };
+            document.addEventListener('keydown', preventKeys);
+
+            document.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+                return false;
             });
         })();
     </script>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- Unified Hero Section -->
-    <section class="unified-hero">
-        <div class="container">
-            <div class="hero-content">
-                <!-- Header Content -->
-                <div class="hero-header">
-                    <h1 class="hero-title">Power of the Word</h1>
-                    <p class="hero-tagline">Beautiful Bahá'í quotes with home screen widgets</p>
-                </div>
-
-                <!-- App Description -->
-                <div class="hero-description">
-                    <p class="hero-subtitle">
-                        Experience inspiring Bahá'í quotes that automatically refresh every 5 minutes,
-                        synchronized across your app and home screen widgets.
-                    </p>
-                </div>
-
-                <!-- Feature Highlights -->
-                <div class="hero-features">
-                    <div class="feature-badge">
-                        <svg class="feature-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                        </svg>
-                        Home Screen Widgets
-                    </div>
-                    <div class="feature-badge">
-                        <svg class="feature-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                        </svg>
-                        Favorites & Search
-                    </div>
-                    <div class="feature-badge">
-                        <svg class="feature-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-                        </svg>
-                        5-Min Auto Updates
-                    </div>
-                    <div class="feature-badge">
-                        <svg class="feature-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.50-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
-                        </svg>
-                        Easy Sharing
-                    </div>
-                </div>
-
-                <!-- Download Section -->
-                <div class="hero-download">
-                    <div class="download-heading">
-                        <h2 class="download-title">Download Now</h2>
-                        <p class="download-description">Get the app and start your spiritual journey</p>
-                    </div>
-
-                    <!-- Mobile Download Button -->
-                    <div class="mobile-download">
-                        <a href="https://link-to.app/BM589B" class="download-button download-button--universal"
-                            aria-label="Download Power of the Word app">
-                            <svg class="download-icon" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
-                            </svg>
-                            Download App
-                        </a>
-                    </div>
-
-                    <!-- Desktop Download Buttons -->
-                    <div class="desktop-download">
-                        <a href="https://apps.apple.com/bh/app/power-of-the-word/id6750488658"
-                            class="download-button download-button--ios" aria-label="Download on the App Store">
-                            <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-                            </svg>
-                            Download for iPhone
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.jaberi.powerword&pcampaignid=web_share"
-                            class="download-button download-button--android" aria-label="Get it on Google Play">
-                            <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                            </svg>
-                            Download for Android
-                        </a>
-                    </div>
-
-                    <p class="platform-note">Choose your platform above or use our universal link on mobile</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <main id="main-content" class="main">
-        <div class="container">
-            <section class="card" aria-labelledby="contact-heading">
-                <h2 id="contact-heading" class="card__title">Contact Us</h2>
-                <p class="card__text">Need help or have questions? We're here to assist you.</p>
-                <a href="mailto:adnan@jaberi.org?subject=Power%20of%20the%20Word%20–%20Support"
-                    class="button button--primary" aria-label="Send support email to adnan@jaberi.org">
-                    Email Support
-                </a>
-                <p class="card__note">We typically respond within 24 hours during business days.</p>
-            </section>
-
-            <section class="card" aria-labelledby="report-heading">
-                <h2 id="report-heading" class="card__title">Report a Problem</h2>
-                <p class="card__text">Experiencing an issue? Help us help you by providing these details:</p>
-                <ul class="checklist">
-                    <li class="checklist__item">Device model (e.g., iPhone 14, Samsung Galaxy S23)</li>
-                    <li class="checklist__item">Operating system version (iOS 17.x or Android 14)</li>
-                    <li class="checklist__item">App version (found in Settings or App Info)</li>
-                    <li class="checklist__item">Steps to reproduce the problem</li>
-                    <li class="checklist__item">Screenshots if applicable</li>
-                    <li class="checklist__item">What you expected to happen vs. what actually happened</li>
-                </ul>
-                <p class="card__text">
-                    <a href="mailto:adnan@jaberi.org?subject=Power%20of%20the%20Word%20–%20Bug%20Report"
-                        class="link">Send us this information</a> and we'll investigate promptly.
-                </p>
-            </section>
-
-            <section class="card" aria-labelledby="help-heading">
-                <h2 id="help-heading" class="card__title">Common Questions</h2>
-
-                <div class="help-grid">
-                    <div class="help-item">
-                        <h3 class="help-item__title">5-Minute Quote Rotation</h3>
-                        <p class="help-item__text">The app automatically shows a new Bahá'í quote every 5 minutes. This
-                            rotation is synchronized between the app and home screen widgets, so you'll see the same
-                            quote everywhere.</p>
-                    </div>
-
-                    <div class="help-item">
-                        <h3 class="help-item__title">Next & Back Buttons</h3>
-                        <p class="help-item__text">Use Next/Back to browse quotes manually. When you do this, the app
-                            overrides the automatic rotation for 5 minutes, keeping your selected quote visible in both
-                            the app and widgets.</p>
-                    </div>
-
-                    <div class="help-item">
-                        <h3 class="help-item__title">Home Screen Widgets</h3>
-                        <p class="help-item__text">Add the Power of the Word widget to your home screen (iOS and
-                            Android). Widgets stay in sync with the app and support deep linking - tap a widget to open
-                            the app to that exact quote.</p>
-                    </div>
-
-                    <div class="help-item">
-                        <h3 class="help-item__title">Favorites & Search</h3>
-                        <p class="help-item__text">Heart quotes to save them as favorites, then view them in the
-                            Favorites tab. Use the Search tab to find specific quotes with fuzzy search across all
-                            Bahá'í writings.</p>
-                    </div>
-
-                    <div class="help-item">
-                        <h3 class="help-item__title">Themes & Settings</h3>
-                        <p class="help-item__text">The app follows your device's dark/light mode by default. You can
-                            override this in Settings to always use your preferred theme. Font size respects your
-                            device's accessibility settings.</p>
-                    </div>
-
-                    <div class="help-item">
-                        <h3 class="help-item__title">Sharing Quotes</h3>
-                        <p class="help-item__text">Share inspiring quotes using your device's share sheet. Available
-                            from both the Home screen and quote detail views to spread wisdom with friends and family.
-                        </p>
-                    </div>
-
-                    <div class="help-item">
-                        <h3 class="help-item__title">Widget Troubleshooting</h3>
-                        <p class="help-item__text">If widgets aren't updating or showing different quotes than the app,
-                            try removing and re-adding the widget, or force-close and reopen the app to refresh the
-                            sync.</p>
-                    </div>
-
-                    <div class="help-item">
-                        <h3 class="help-item__title">Deep Link Issues</h3>
-                        <p class="help-item__text">If tapping a widget doesn't open the correct quote in the app, ensure
-                            the app is updated to the latest version and try restarting your device to refresh the deep
-                            link handlers.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="card" aria-labelledby="legal-heading">
-                <h2 id="legal-heading" class="card__title">Legal Information</h2>
-                <p class="card__text">
-                    Review our <a href="./privacy.html" class="link">Privacy Policy</a> to understand how we protect
-                    your privacy and handle your data.
-                </p>
-            </section>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p class="footer__text">&copy; 2025 Jaberi. All rights reserved.</p>
-        </div>
-    </footer>
 </body>
 
 </html>
